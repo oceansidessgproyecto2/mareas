@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="prediccion_tree">
+      <field name="name">mareas.prediccion.tree</field>
+      <field name="model">mareas.prediccion</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="fecha_inicio"/>
+          <field name="fecha_final"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="prediccion_form">
+      <field name="name">mareas.prediccion.form</field>
+      <field name="model">mareas.prediccion</field>
+      <field name="arch" type="xml">
+       <form>
+	<group colspan="2" col="2">
+          <field name="fecha_inicio"/>
+          <field name="fecha_final"/>
+        </group>
+       </form>
+      </field>
+    </record>    
+
+    <record model="ir.ui.view" id="apikey_tree">
+      <field name="name">mareas.apikey.tree</field>
+      <field name="model">mareas.apikey</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="token"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="apikey_form">
+      <field name="name">mareas.apikey.form</field>
+      <field name="model">mareas.apikey</field>
+      <field name="arch" type="xml">
+       <form>
+	<group colspan="2" col="2">  
+          <field name="token"/>
+        </group>
+       </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+     <record model="ir.actions.act_window" id="prediccion_action_window">
+      <field name="name">Predicción</field>
+      <field name="res_model">mareas.prediccion</field>
+      <field name="view_mode">tree,form</field>
+     </record>
+
+    <record model="ir.actions.act_window" id="apikey_action_window">
+      <field name="name">API Key</field>
+      <field name="res_model">mareas.apikey</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="coches.action_server">
+      <field name="name">coches server</field>
+      <field name="model_id" ref="model_coches_coches"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="Mareas" id="mareas_menu_root"/>
+
+    <!-- menu categories -->
+    <menuitem name="Mareas" id="mareas_menu" parent="mareas_menu_root"/>
+
+    <menuitem name="Prediccion" id="menu_prediccion" parent="mareas_menu" action="prediccion_action_window"/>
+    <menuitem name="APIKey" id="menu_apikey" parent="mareas_menu" action="apikey_action_window"/>
+
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="coches.menu_1_list" parent="coches.menu_1"
+              action="coches.action_window"/>
+    <menuitem name="Server to list" id="coches" parent="coches.menu_2"
+              action="coches.action_server"/>
+-->
+  </data>
+</odoo>
